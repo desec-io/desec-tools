@@ -2,9 +2,9 @@
 
 if [ -z "$2" ]
   then
-    echo "Usage: $0 oldfile newfile"
-    echo
     cat <<- EOM
+	Usage: $0 oldfile newfile
+
 	The input files are expected to contain a JSON array of RRset objects as
 	described at https://desec.readthedocs.io/en/latest/#rrset-field-reference.
 	The script then outputs a diff-like JSON array. Filenames equal to a dash -
@@ -28,6 +28,12 @@ if [ -z "$2" ]
 	    - <<< '[]'
 EOM
     exit 1
+fi
+
+# Check dependencies
+if [ ! -x "$(which jq 2>/dev/null)" ]; then
+  echo "please install: jq (https://stedolan.github.io/jq/download/)" >&2
+  exit 1
 fi
 
 # Do /dev/stdin mapping as jq does not support it out of the box
