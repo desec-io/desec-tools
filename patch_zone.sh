@@ -58,7 +58,7 @@ HEADERS="Authorization: Token ${TOKEN}"
 
 timestamp=$(date +%Y-%m-%d_%H.%M.%S)
 
-./rrsets_diff.sh <(curl -sS ${API_URL} -H@- <<< "${HEADERS}") $filename \
+./rrsets_diff.sh <(./fetch_zone.py $zone) $filename \
 | tee patch_zone.$timestamp.json \
 | curl -sS -X PATCH ${API_URL} -H@<(cat <<< "${HEADERS}") -H 'Content-Type: application/json' --data @- \
 > patch_zone.$timestamp.log
