@@ -1,6 +1,21 @@
 # Miscellaneous tools for the deSEC DNS platform
 A loose collection of tools automating some routine DNS management tasks
 
+## fetch_zone.py – Fetch zone contents
+
+```
+usage: fetch_zone.py [-h] zone
+
+Fetch zone contents from deSEC. Access token is expected in $TOKEN environment
+variable.
+
+positional arguments:
+  zone        Zone to fetch
+
+optional arguments:
+  -h, --help  show this help message and exit
+```
+
 ## patch_zone.sh – Replace all RRsets in a domain
 
 ```
