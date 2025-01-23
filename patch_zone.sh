@@ -64,8 +64,8 @@ AUTH_HEADER="Authorization: Token ${TOKEN}"
 
 timestamp=$(date +%Y-%m-%d_%H.%M.%S)
 
+# curl --fail-with-body available since version 7.76 (released in 2021)
 ./rrsets_diff.sh <(./fetch_zone.py $zone) $filename \
 | tee patch_zone.$timestamp.json \
-| curl -sS -X PATCH ${API_URL} -H@<(cat <<< "${AUTH_HEADER}") -H 'Content-Type: application/json' --data @- \
-> patch_zone.$timestamp.log
+| curl -sS --fail-with-body -X PATCH ${API_URL} -H@<(cat <<< "${AUTH_HEADER}") -H 'Content-Type: application/json' --data @-
 
