@@ -36,23 +36,23 @@ fi
 
 if [ -z "$TOKEN" ]; then
         echo 'Please set $TOKEN'
-        exit 2
+        exit 3
 fi
 
 # Check dependencies
 if [ ! -x "$(which curl 2>/dev/null)" ]; then
-  echo "please install: curl (https://stedolan.github.io/jq/download/)" >&2
-  exit 1
+  echo "please install: curl" >&2
+  exit 2
 fi
 
 if [ ! -x "./rrsets_diff.sh" ]; then
   echo "please install: rrsets_diff.sh (https://github.com/desec-io/desec-tools/)" >&2
-  exit 1
+  exit 2
 fi
 
 if [ ! -x "./fetch_zone.py" ]; then
   echo "please install: fetch_zone.py (https://github.com/desec-io/desec-tools/)" >&2
-  exit 1
+  exit 2
 fi
 
 
